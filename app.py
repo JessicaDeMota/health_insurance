@@ -55,13 +55,14 @@ class WorldInsurance(db.Model):
 # information about how to access your data
 # you can choose to output data on this page
 @app.route('/', methods=['GET'])
+@app.route('/index/', methods=['GET'])
 def index():
     return render_template('index.html')
 
 # include other views that return html here:
-@app.route('/other')
-def other():
-    return render_template('other.html')
+@app.route('/about/')
+def about():
+    return render_template('about.html')
 
 # set up the following views to allow users to make
 # GET requests to get your data in json
@@ -71,25 +72,20 @@ def other():
 # change this to return your data
 @app.route('/api', methods=['GET'])
 def get_data():
-    table = DBTable.query.all()
-    d = {row.column_1:row.column_2 for row in table}
+    table = WorldInsurance.query.all()
+    d = []
+    for row in table:
+        rows_as_dict = {
+            "rank" : row.rank,
+            "country" : row.country,
+            "total" : row.total,
+            "government" : row.government,
+            "primary_private" : row.primary_private,
+        }
+        d.append(rows_as_dict)
     return jsonify(d)
 
-# change this to allow users to add/update data
-@app.route('/api', methods=['POST'])
-def add_data():
-    for k,v in request.args.items():
-        pass
-    return jsonify({})
-        
-# change this to allow the deletion of data
-@app.route('/api', methods=['DELETE'])
-def delete_data():
-    for k,v in request.args.items():
-        pass
-    return jsonify({})
 
-#
 # CODE TO BE EXECUTED WHEN RAN AS SCRIPT
 #
 
