@@ -4,6 +4,7 @@
 # you might have to import additional things you need
 
 from flask import Flask, render_template, jsonify
+
 from flask_sqlalchemy import SQLAlchemy
 
 #
@@ -19,7 +20,7 @@ app.config["ENV"] = 'development'
 app.config["SECRET_KEY"]=b'_5#y2L"F4Q8z\n\xec]/'
 
 # change the following .db file name
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///your-db-name.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///world_insurance.db'
 # this line is to prevent SQLAlchemy from throwing a warning
 # if you don't get one with out it, feel free to remove
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -32,13 +33,15 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # this is our model (aka table)
-class DBTable(db.Model):
+class WorldInsurance(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    column_1 = db.Column(db.String(255), nullable=False)
-    column_2 = db.Column(db.Text, nullable=False)
-    #column_3 = db.Column(db.DateTime, nullable=False)
-    #column_4 = db.Column(db.Float, nullable=False)
-    #column_5 = db.Column(db.Boolean, nullable=False)
+    # this becomes an integer b/c the output of my data is an integer
+    rank = db.Column(db.Integer, nullable=False)
+    #this becomes a string because the output of countries are all a sting 
+    country = db.Column(db.String(255), nullable=False)
+    total = db.Column(db.Integer, nullable=False)
+    government = db.Column(db.Integer, nullable=False)
+    primary_private = db.Column(db.Integer, nullable=False)
     
 #
 # VIEWS 
