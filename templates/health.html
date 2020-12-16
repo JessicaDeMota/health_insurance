@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block body %}
+<section class="container centered">
+    <div class="about">
+        <h1>Ranking In Order </h1>
+        <div class="ranking-container">
+        {% for d in data %}
+        <ul class="ranking">
+            <li>Country:{{d.country}}</li>
+            <li>Rank:{{d.rank}}</li>
+        </ul>
+        {% endfor %}
+    </div>
+</div>
+</section>
+{% endblock %}

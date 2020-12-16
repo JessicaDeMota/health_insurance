@@ -39,7 +39,7 @@ def website_db(info):
     for infos in info:
         #print(infos)
         new_row = WorldInsurance(rank = infos[0], country = infos[1],total = infos[2], government = infos[3], primary_private = infos[4])
-        print("This is a new row", new_row)
+        #print("This is a new row", new_row)
         db.session.add(new_row)
         db.session.commit()
 
