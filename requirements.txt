@@ -1,0 +1,10 @@
+
+bs4==0.0.1
+Flask==1.1.2
+Flask-SQLAlchemy==2.4.4
+Jinja2==2.11.2
+numpy==1.18.5
+urllib3==1.25.9
+Werkzeug==1.0.1
+python==3.9
+
