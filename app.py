@@ -2,7 +2,7 @@
 # IMPORTS
 # 
 # you might have to import additional things you need
-
+import requests 
 from flask import Flask, render_template, jsonify
 
 from flask_sqlalchemy import SQLAlchemy
@@ -57,6 +57,10 @@ class WorldInsurance(db.Model):
 @app.route('/', methods=['GET'])
 @app.route('/index/', methods=['GET'])
 def index():
+    response = requests.get("https://health-insurances.herokuapp.com/api")
+    print(response.status_code)
+    j = response.json()
+    print(j)
     return render_template('index.html')
 
 # include other views that return html here:
